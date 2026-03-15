@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS todo_list;
+USE todo_list;

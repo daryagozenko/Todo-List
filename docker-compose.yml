@@ -1,0 +1,44 @@
+services:
+  db:
+    build: ./db
+    container_name: todo-db
+    environment:
+      - MYSQL_DATABASE=todo_list
+      - MYSQL_USER=app_user
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - todo-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+
+  app:
+    build: ./TodoList
+    container_name: todo-app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - SERVER_PORT=8081
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=todo_list
+      - DB_USERNAME=app_user
+      - DB_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "8080:8081"
+    networks:
+      - todo-network
+    restart: unless-stopped
+
+networks:
+  todo-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
