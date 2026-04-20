@@ -3,9 +3,7 @@ package com.gozenko.TodoList.controllers;
 import com.gozenko.TodoList.DTO.UserResponse;
 import com.gozenko.TodoList.models.User;
 import com.gozenko.TodoList.services.UserService;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
