@@ -18,6 +18,7 @@
 		<java.version>21</java.version>
 		<jacoco.version>0.8.12</jacoco.version>
 		<maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+		<checkstyle.version>3.3.1</checkstyle.version>
 	</properties>
 
 	<dependencies>
@@ -84,6 +85,27 @@
 							<dataFile>${project.build.directory}/jacoco.exec</dataFile>
 							<outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Checkstyle -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${checkstyle.version}</version>
+				<configuration>
+					<configLocation>checkstyle.xml</configLocation>
+					<violationSeverity>error</violationSeverity>
+					<failOnViolation>true</failOnViolation>
+					<includeTestSourceDirectory>true</includeTestSourceDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>

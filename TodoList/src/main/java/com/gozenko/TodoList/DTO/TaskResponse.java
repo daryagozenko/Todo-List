@@ -1,9 +1,6 @@
 package com.gozenko.TodoList.DTO;
 
 import com.gozenko.TodoList.models.Task;
-import com.gozenko.TodoList.models.User;
-import com.gozenko.TodoList.utils.Priority;
-import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
