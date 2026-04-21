@@ -84,13 +84,22 @@
 						<configuration>
 							<dataFile>${project.build.directory}/jacoco.exec</dataFile>
 							<outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
-							<excludes>
-								<exclude>**/models/**</exclude>
-								<exclude>**/DTO/**</exclude>
-								<exclude>**/utils/**</exclude>
-								<exclude>**/TodoListApplication.class</exclude>
-								<exclude>**/repositories/**</exclude>
-							</excludes>
+							<includes>
+								<include>com/gozenko/TodoList/services/**</include>
+								<include>com/gozenko/TodoList/controllers/**</include>
+							</includes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>check</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<configuration>
+							<includes>
+								<include>com/gozenko/TodoList/services/**</include>
+								<include>com/gozenko/TodoList/controllers/**</include>
+							</includes>
 						</configuration>
 					</execution>
 				</executions>
