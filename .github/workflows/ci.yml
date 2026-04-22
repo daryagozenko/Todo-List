@@ -47,12 +47,7 @@ jobs:
       - name: Run tests with coverage
         run: |
           cd TodoList
-          mvn test jacoco:report
-
-      - name: Check coverage
-        run: |
-          cd TodoList
-          mvn test jacoco:check
+          mvn clean verify
 
   docker-build:
     runs-on: ubuntu-latest
