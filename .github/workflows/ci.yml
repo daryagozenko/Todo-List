@@ -52,13 +52,7 @@ jobs:
       - name: Check coverage
         run: |
           cd TodoList
-          COVERAGE=$(grep -oP 'Total[^%]+?([0-9]{1,3})%' target/site/jacoco/index.html | grep -oP '[0-9]{1,3}%' | head -1 | tr -d '%')
-          echo "Coverage = ${COVERAGE}%"
-          if [ "${COVERAGE}" -lt 50 ]; then
-            echo "Coverage ${COVERAGE}% is below 50%"
-            exit 1
-          fi
-          echo "Coverage ${COVERAGE}% is OK"
+          mvn test jacoco:check
 
   docker-build:
     runs-on: ubuntu-latest
